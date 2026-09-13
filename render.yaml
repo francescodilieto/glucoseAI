@@ -1,0 +1,33 @@
+# Render Blueprint: creates all 3 services in one go from render.com/docs/blueprint-spec.
+# ML_SERVICE_URL and API_BASE_URL are left for manual entry (sync: false)
+# because they depend on the public URLs Render assigns on first deploy --
+# see docs/DEPLOY.md for the exact values to fill in.
+services:
+  - type: web
+    name: glucose-ml-service
+    runtime: docker
+    plan: free
+    dockerfilePath: ./ml-service/Dockerfile
+    dockerContext: ./ml-service
+    healthCheckPath: /health
+
+  - type: web
+    name: glucose-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/series
+    envVars:
+      - key: ML_SERVICE_URL
+        sync: false
+
+  - type: web
+    name: glucose-frontend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: API_BASE_URL
+        sync: false

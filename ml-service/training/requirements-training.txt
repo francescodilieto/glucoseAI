@@ -1,0 +1,7 @@
+# Only needed to (re)train the model (training/train_lstm.py) and export it
+# to ONNX (training/export_to_onnx.py). The serving container only needs
+# requirements.txt (onnxruntime) -- these are deliberately not in there.
+tensorflow-cpu==2.21.0
+scikit-learn==1.9.1
+pandas==3.0.5
+tf2onnx==1.17.0

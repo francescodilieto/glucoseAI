@@ -1,0 +1,64 @@
+/* Design tokens: validated categorical + status palette (see docs/DATASET.md
+   sibling — dataviz skill palette reference). Light values first; dark
+   values follow the OS setting only (no in-app toggle). */
+
+:root {
+  color-scheme: light;
+
+  --surface-page: #f9f9f7;
+  --surface-card: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border-hairline: rgba(11, 11, 11, 0.1);
+
+  --series-historical: #2a78d6;
+  --series-forecast: #eb6834;
+
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-critical: #d03b3b;
+
+  --radius-card: 20px;
+  --radius-control: 12px;
+  --shadow-card: 0 1px 2px rgba(11, 11, 11, 0.04), 0 8px 24px rgba(11, 11, 11, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --surface-page: #0d0d0d;
+    --surface-card: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --border-hairline: rgba(255, 255, 255, 0.1);
+
+    --series-historical: #3987e5;
+    --series-forecast: #d95926;
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

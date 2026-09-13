@@ -1,0 +1,6 @@
+{
+  "lookback_points": 12,
+  "horizon_points": 12,
+  "data_min": 40.0,
+  "data_max": 261.0
+}

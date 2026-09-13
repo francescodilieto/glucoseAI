@@ -1,0 +1,68 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>Glucose Forecast</h1>
+    <p class="subtitle">Demo CGM series &mdash; short-term trend forecast</p>
+  </header>
+
+  <div class="controls">
+    <label class="picker">
+      <span class="picker-label">Patient</span>
+      <select
+        [value]="selectedPatientId()"
+        (change)="onPatientChange($any($event.target).value)"
+      >
+        @for (patient of patients(); track patient.patientId) {
+          <option [value]="patient.patientId">{{ patient.label }}</option>
+        }
+      </select>
+    </label>
+
+    <div class="segmented" role="group" aria-label="Forecast horizon">
+      @for (option of horizonOptions; track option) {
+        <button
+          type="button"
+          class="segment"
+          [class.active]="horizonMinutes() === option"
+          [attr.aria-pressed]="horizonMinutes() === option"
+          (click)="onHorizonChange(option)"
+        >
+          {{ option }}m
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (currentReading(); as reading) {
+    <section class="hero-card">
+      <div class="hero-value-row">
+        <span class="hero-value">{{ reading.value }}</span>
+        <span class="hero-unit">mg/dL</span>
+        <span class="hero-trend" [class]="reading.trend" aria-hidden="true">
+          @switch (reading.trend) {
+            @case ('up') { &#8599; }
+            @case ('down') { &#8600; }
+            @default { &#8594; }
+          }
+        </span>
+      </div>
+      <p class="hero-caption">as of {{ reading.timestamp | date: 'shortTime' }}</p>
+
+      <app-risk-badge [risk]="prediction()!.risk" />
+    </section>
+
+    <section class="chart-card">
+      <app-glucose-chart
+        [historical]="prediction()!.historical"
+        [forecast]="prediction()!.forecast"
+      />
+    </section>
+
+    <p class="model-version">Model: {{ prediction()!.modelVersion }}</p>
+  } @else if (loading()) {
+    <p class="loading">Loading&hellip;</p>
+  }
+</div>

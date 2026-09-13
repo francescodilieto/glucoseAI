@@ -1,0 +1,27 @@
+# Backend (Java/Maven)
+backend/target/
+
+# Frontend (Angular/Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# ML service (Python)
+ml-service/__pycache__/
+ml-service/**/__pycache__/
+ml-service/.venv/
+ml-service/*.egg-info/
+ml-service/.pytest_cache/
+
+# Training intermediates: only the exported ONNX model + scaler.json are
+# shipped (app/models/); the raw Keras checkpoint is a training artifact.
+ml-service/app/models/*.keras
+ml-service/app/models/_saved_model_tmp/
+
+# Local training data (downloaded from PhysioNet, not redistributed here;
+# see docs/DATASET.md and scripts/prepare_training_data.py)
+training-data/
+
+# OS/editor
+.DS_Store
+*.swp

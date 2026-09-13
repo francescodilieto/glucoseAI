@@ -1,0 +1,5 @@
+app/models/*.keras
+app/models/_saved_model_tmp/
+**/__pycache__
+tests
+training

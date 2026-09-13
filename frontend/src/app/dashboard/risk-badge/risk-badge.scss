@@ -1,0 +1,57 @@
+.risk-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border-hairline);
+}
+
+.risk-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.risk-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.risk-level {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.risk-message {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.risk-badge.ok {
+  background: color-mix(in srgb, var(--status-good) 8%, var(--surface-card));
+  .risk-icon,
+  .risk-level {
+    color: var(--status-good);
+  }
+}
+
+.risk-badge.warning {
+  background: color-mix(in srgb, var(--status-warning) 14%, var(--surface-card));
+  .risk-icon,
+  .risk-level {
+    color: color-mix(in srgb, var(--status-warning) 70%, var(--text-primary));
+  }
+}
+
+.risk-badge.alert {
+  background: color-mix(in srgb, var(--status-critical) 10%, var(--surface-card));
+  .risk-icon,
+  .risk-level {
+    color: var(--status-critical);
+  }
+}

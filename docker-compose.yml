@@ -1,0 +1,23 @@
+services:
+  ml-service:
+    build: ./ml-service
+    ports:
+      - "8000:8000"
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      ML_SERVICE_URL: http://ml-service:8000
+    depends_on:
+      - ml-service
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    environment:
+      API_BASE_URL: http://localhost:8080/api
+    depends_on:
+      - backend
